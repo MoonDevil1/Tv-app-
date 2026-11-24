@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https: http:; media-src 'self' blob: https: http:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https: http:">
+  <title>Northstar TV</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <button class="brand focusable" data-action="home" aria-label="Northstar TV home">
+        <span>NORTHSTAR</span><b>/ TV</b>
+      </button>
+      <div class="playlistLabel" id="playlistLabel">Your screen, your channels</div>
+      <div class="topActions">
+        <button class="button secondary compact focusable" data-action="settings">Settings</button>
+        <button class="button focusable" data-action="add">＋ Add playlist</button>
+      </div>
+    </header>
+
+    <main id="mainView">
+      <section id="emptyView" class="empty">
+        <div class="eyebrow">MADE FOR THE BIG SCREEN</div>
+        <h1>Everything live.<br>Nothing in the way.</h1>
+        <p>Add an M3U playlist to browse channels. LiveTGTV is available as a one-tap test source.</p>
+        <div class="row">
+          <button class="button focusable" data-action="add">＋ Add playlist</button>
+          <button class="button secondary focusable" data-action="demo">▶ Try LiveTGTV</button>
+        </div>
+        <div id="emptyNotice" class="notice"></div>
+      </section>
+
+      <section id="channelView" class="channels hidden">
+        <div class="headingRow">
+          <div><h2>Live channels</h2><div id="channelCount" class="muted"></div></div>
+          <button class="button secondary compact focusable" data-action="refresh">↻ Refresh</button>
+        </div>
+        <div id="groups" class="groups"></div>
+        <div id="channelGrid" class="grid"></div>
+      </section>
+    </main>
+
+    <dialog id="playlistDialog">
+      <form method="dialog">
+        <h2>Add a playlist</h2>
+        <p class="muted">Paste an M3U URL. HLS, MPEG-DASH and MP4 entries are recognized.</p>
+        <input id="playlistUrl" type="url" placeholder="https://example.com/playlist.m3u" autocomplete="off" />
+        <div id="dialogNotice" class="notice"></div>
+        <div class="row end"><button class="button focusable" id="loadPlaylist" type="button">Load playlist</button><button class="button secondary focusable" value="cancel">Cancel</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="settingsDialog">
+      <form method="dialog">
+        <h2>Settings</h2>
+        <p class="muted">Appearance</p>
+        <div class="row">
+          <button class="button secondary focusable themeButton" type="button" data-theme="dark">☾ Dark theme</button>
+          <button class="button secondary focusable themeButton" type="button" data-theme="light">☼ Light theme</button>
+        </div>
+        <div class="row end"><button class="button focusable" value="cancel">Done</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="playerDialog">
+      <div class="playerShell">
+        <div class="playerTop">
+          <div><h2 id="playerTitle"></h2><div id="playerSubtitle" class="muted"></div></div>
+          <button class="button secondary compact focusable" id="closePlayer">✕ Close</button>
+        </div>
+        <div class="videoBox">
+          <video id="video" controls autoplay></video>
+          <div id="videoMessage" class="videoMessage hidden"></div>
+        </div>
+        <div class="playerBottom"><span id="sourceLabel"></span><button id="nextSource" class="button secondary compact focusable hidden">Next source ›</button></div>
+      </div>
+    </dialog>
+  </div>
+  <script src="node_modules/hls.js/dist/hls.min.js"></script>
+  <script src="node_modules/shaka-player/dist/shaka-player.compiled.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>

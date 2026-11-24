@@ -2,23 +2,15 @@
   "name": "northstar-tv",
   "version": "1.0.0",
   "private": true,
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo run:android",
-    "android:tv": "cross-env EXPO_TV=1 expo run:android",
+    "start": "electron .",
+    "dev": "electron .",
     "test": "node --test"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^2.2.0",
-    "expo": "~57.0.10",
-    "expo-status-bar": "~57.0.1",
-    "react": "19.2.3",
-    "react-native": "npm:react-native-tvos@^0.86.3-0",
-    "react-native-video": "^6.19.2",
-    "buffer": "^6.0.3"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3"
+    "electron": "^37.6.0",
+    "hls.js": "^1.6.13",
+    "shaka-player": "^4.16.8"
   }
 }
