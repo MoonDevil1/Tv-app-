@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Northstar TV",
+    "slug": "northstar-tv",
+    "version": "1.0.0",
+    "orientation": "landscape",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "app.northstar.tv",
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "plugins": ["react-native-video"]
+  }
+}
